@@ -1,0 +1,161 @@
+set_global_assignment -name TOP_LEVEL_ENTITY de2_net
+# Copyright (C) 1991-2010 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+
+# Altera recommends that you do not modify this file. This
+# file is updated automatically by the Quartus II software
+# and any changes you make may be lost or overwritten.
+
+
+set_global_assignment -name DEVICE EP2C35F672C6
+set_global_assignment -name FAMILY "Cyclone II"
+
+set_location_assignment PIN_N23 -to KEY[1]
+set_location_assignment PIN_P23 -to KEY[2]
+set_location_assignment PIN_W26 -to KEY[3]
+set_location_assignment PIN_T6 -to DRAM_ADDR[0]
+set_location_assignment PIN_V4 -to DRAM_ADDR[1]
+set_location_assignment PIN_V3 -to DRAM_ADDR[2]
+set_location_assignment PIN_W2 -to DRAM_ADDR[3]
+set_location_assignment PIN_W1 -to DRAM_ADDR[4]
+set_location_assignment PIN_U6 -to DRAM_ADDR[5]
+set_location_assignment PIN_U7 -to DRAM_ADDR[6]
+set_location_assignment PIN_U5 -to DRAM_ADDR[7]
+set_location_assignment PIN_W4 -to DRAM_ADDR[8]
+set_location_assignment PIN_W3 -to DRAM_ADDR[9]
+set_location_assignment PIN_Y1 -to DRAM_ADDR[10]
+set_location_assignment PIN_V5 -to DRAM_ADDR[11]
+set_location_assignment PIN_AE2 -to DRAM_BA_0
+set_location_assignment PIN_AE3 -to DRAM_BA_1
+set_location_assignment PIN_AB3 -to DRAM_CAS_N
+set_location_assignment PIN_AA6 -to DRAM_CKE
+set_location_assignment PIN_AA7 -to DRAM_CLK
+set_location_assignment PIN_AC3 -to DRAM_CS_N
+set_location_assignment PIN_V6 -to DRAM_DQ[0]
+set_location_assignment PIN_AA2 -to DRAM_DQ[1]
+set_location_assignment PIN_AA1 -to DRAM_DQ[2]
+set_location_assignment PIN_Y3 -to DRAM_DQ[3]
+set_location_assignment PIN_Y4 -to DRAM_DQ[4]
+set_location_assignment PIN_R8 -to DRAM_DQ[5]
+set_location_assignment PIN_T8 -to DRAM_DQ[6]
+set_location_assignment PIN_V7 -to DRAM_DQ[7]
+set_location_assignment PIN_W6 -to DRAM_DQ[8]
+set_location_assignment PIN_AB2 -to DRAM_DQ[9]
+set_location_assignment PIN_AB1 -to DRAM_DQ[10]
+set_location_assignment PIN_AA4 -to DRAM_DQ[11]
+set_location_assignment PIN_AA3 -to DRAM_DQ[12]
+set_location_assignment PIN_AC2 -to DRAM_DQ[13]
+set_location_assignment PIN_AC1 -to DRAM_DQ[14]
+set_location_assignment PIN_AA5 -to DRAM_DQ[15]
+set_location_assignment PIN_AD2 -to DRAM_LDQM
+set_location_assignment PIN_Y5 -to DRAM_UDQM
+set_location_assignment PIN_AB4 -to DRAM_RAS_N
+set_location_assignment PIN_AD3 -to DRAM_WE_N
+set_location_assignment PIN_AC18 -to FL_ADDR[0]
+set_location_assignment PIN_AB18 -to FL_ADDR[1]
+set_location_assignment PIN_AE19 -to FL_ADDR[2]
+set_location_assignment PIN_AF19 -to FL_ADDR[3]
+set_location_assignment PIN_AE18 -to FL_ADDR[4]
+set_location_assignment PIN_AF18 -to FL_ADDR[5]
+set_location_assignment PIN_Y16 -to FL_ADDR[6]
+set_location_assignment PIN_AA16 -to FL_ADDR[7]
+set_location_assignment PIN_AD17 -to FL_ADDR[8]
+set_location_assignment PIN_AC17 -to FL_ADDR[9]
+set_location_assignment PIN_AE17 -to FL_ADDR[10]
+set_location_assignment PIN_AF17 -to FL_ADDR[11]
+set_location_assignment PIN_W16 -to FL_ADDR[12]
+set_location_assignment PIN_W15 -to FL_ADDR[13]
+set_location_assignment PIN_AC16 -to FL_ADDR[14]
+set_location_assignment PIN_AD16 -to FL_ADDR[15]
+set_location_assignment PIN_AE16 -to FL_ADDR[16]
+set_location_assignment PIN_AC15 -to FL_ADDR[17]
+set_location_assignment PIN_AB15 -to FL_ADDR[18]
+set_location_assignment PIN_AA15 -to FL_ADDR[19]
+set_location_assignment PIN_Y15 -to FL_ADDR[20]
+set_location_assignment PIN_Y14 -to FL_ADDR[21]
+set_location_assignment PIN_V17 -to FL_CE_N
+set_location_assignment PIN_W17 -to FL_OE_N
+set_location_assignment PIN_AD19 -to FL_DQ[0]
+set_location_assignment PIN_AC19 -to FL_DQ[1]
+set_location_assignment PIN_AF20 -to FL_DQ[2]
+set_location_assignment PIN_AE20 -to FL_DQ[3]
+set_location_assignment PIN_AB20 -to FL_DQ[4]
+set_location_assignment PIN_AC20 -to FL_DQ[5]
+set_location_assignment PIN_AF21 -to FL_DQ[6]
+set_location_assignment PIN_AE21 -to FL_DQ[7]
+set_location_assignment PIN_AA18 -to FL_RST_N
+set_location_assignment PIN_AA17 -to FL_WE_N
+set_location_assignment PIN_N2 -to CLOCK_50
+set_location_assignment PIN_K4 -to LCD_RW
+set_location_assignment PIN_K3 -to LCD_EN
+set_location_assignment PIN_K1 -to LCD_RS
+set_location_assignment PIN_J1 -to LCD_DATA[0]
+set_location_assignment PIN_J2 -to LCD_DATA[1]
+set_location_assignment PIN_H1 -to LCD_DATA[2]
+set_location_assignment PIN_H2 -to LCD_DATA[3]
+set_location_assignment PIN_J4 -to LCD_DATA[4]
+set_location_assignment PIN_J3 -to LCD_DATA[5]
+set_location_assignment PIN_H4 -to LCD_DATA[6]
+set_location_assignment PIN_H3 -to LCD_DATA[7]
+set_location_assignment PIN_L4 -to LCD_ON
+set_location_assignment PIN_K2 -to LCD_BLON
+set_location_assignment PIN_D17 -to ENET_DATA[0]
+set_location_assignment PIN_C17 -to ENET_DATA[1]
+set_location_assignment PIN_B18 -to ENET_DATA[2]
+set_location_assignment PIN_A18 -to ENET_DATA[3]
+set_location_assignment PIN_B17 -to ENET_DATA[4]
+set_location_assignment PIN_A17 -to ENET_DATA[5]
+set_location_assignment PIN_B16 -to ENET_DATA[6]
+set_location_assignment PIN_B15 -to ENET_DATA[7]
+set_location_assignment PIN_B20 -to ENET_DATA[8]
+set_location_assignment PIN_A20 -to ENET_DATA[9]
+set_location_assignment PIN_C19 -to ENET_DATA[10]
+set_location_assignment PIN_D19 -to ENET_DATA[11]
+set_location_assignment PIN_B19 -to ENET_DATA[12]
+set_location_assignment PIN_A19 -to ENET_DATA[13]
+set_location_assignment PIN_E18 -to ENET_DATA[14]
+set_location_assignment PIN_D18 -to ENET_DATA[15]
+set_location_assignment PIN_B24 -to ENET_CLK
+set_location_assignment PIN_A21 -to ENET_CMD
+set_location_assignment PIN_A23 -to ENET_CS_N
+set_location_assignment PIN_B21 -to ENET_INT
+set_location_assignment PIN_A22 -to ENET_RD_N
+set_location_assignment PIN_B22 -to ENET_WR_N
+set_location_assignment PIN_B23 -to ENET_RST_N
+
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+
+set_global_assignment -name IGNORE_CLOCK_SETTINGS ON
+set_global_assignment -name FMAX_REQUIREMENT "50 MHz"
+set_global_assignment -name PARTITION_COLOR 2147039 -section_id Top
+set_global_assignment -name LL_ROOT_REGION ON -section_id "Root Region"
+set_global_assignment -name LL_MEMBER_STATE LOCKED -section_id "Root Region"
+
+set_instance_assignment -name FAST_INPUT_REGISTER ON -to *
+set_instance_assignment -name FAST_OUTPUT_REGISTER ON -to *
+set_instance_assignment -name TSU_REQUIREMENT "10 ns" -from * -to *
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to *
+
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
+set_global_assignment -name VHDL_FILE qsys/DM9000A/dm9000a.vhd
+set_global_assignment -name QIP_FILE qsys/system/synthesis/system.qip
+set_global_assignment -name VHDL_FILE de2_net.vhd
+set_location_assignment PIN_G26 -to KEY[0]
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

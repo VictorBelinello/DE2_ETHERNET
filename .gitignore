@@ -1,0 +1,9 @@
+src/db/
+src/*.done
+src/*.sof
+src/software/
+src/.qsys_edit/
+
+src/qsys/*
+!src/qsys/system.qsys
+!src/qsys/DM9000A
