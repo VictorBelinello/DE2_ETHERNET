@@ -14,7 +14,7 @@ src/*.bak
 src/greybox*/
 
 src/software/*
-!src/software/.gitkeep
+!src/software/DM9000A/
 
 
 src/qsys/*
