@@ -155,7 +155,6 @@ set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "3.3-V LVTTL"
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name LAST_QUARTUS_VERSION "13.0 SP1"
-set_global_assignment -name QIP_FILE qsys/system/synthesis/system.qip
 set_global_assignment -name VHDL_FILE de2_net.vhd
 set_global_assignment -name VERILOG_FILE reset_delay.v
 set_global_assignment -name QIP_FILE hardware/PLL/pll.qip
