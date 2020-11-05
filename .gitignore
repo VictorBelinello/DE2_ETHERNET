@@ -1,8 +1,21 @@
+src/.qsys_edit/
+
 src/db/
+src/incremental_db/
 src/*.done
 src/*.sof
-src/software/
-src/.qsys_edit/
+src/*.summary
+src/*.jdi
+src/*.rpt
+src/*.smsg
+src/*.pin
+src/*.qws
+src/*.bak
+src/greybox*/
+
+src/software/*
+!src/software/.gitkeep
+
 
 src/qsys/*
 !src/qsys/system.qsys

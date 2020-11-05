@@ -1,0 +1,1 @@
+TODO: remover o .qip do .qsf
