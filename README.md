@@ -22,26 +22,21 @@ Alguns arquivos utilizados no desenvolvimento do projeto foram inclusos para ref
     6. Selecione o botão Add em seguida OK
 8. Compile o projeto (compilação completa não apenas síntese e análise) 
     1. Os pinos do top level são definidos automaticamente, desde que nomeados conforme o esquemático (disponível em resources\DE2\DE2_schematics.pdf)
-9. Carregue o .sof na placa
-    1. Certifique-se que a placa está conectada ao PC e ligada e que o cabo ethernet está conectada nela
-    2. Abra o Programador (Tools->Programmer)
-    3. Uma mensagem do OpenCore Plus irá aparecer (existem funcionalidades sendo utilizadas que são limitadas por tempo ou para avaliação) apenas dê OK
-    4. O arquivo de2_net_time_limited.sof deve carregar automaticamente, caso não use o Add File... para adicionar, selecione o botão Start para carregar o programa. Caso o progresso não fique em '100%(Successful)' verifique se a placa está devidamente conectada ao PC.
-    5. Deixe as janelas do programador e do OpenCore Plus abertas
-10. Abra o Nios II (Tools->Nios II Software... ou pelo Windows)
-11. Para Workspace do Eclipse selecione o diretório **software** (deve ter apenas um diretório chamado base nele)
-12. Criar nova aplicação + BSP
+
+9. Abra o Nios II (Tools->Nios II Software... ou pelo Windows)
+10. Para Workspace do Eclipse selecione o diretório **software** (deve ter apenas um diretório chamado base nele)
+11. Criar nova aplicação + BSP
     1. Acesse File->New-> Nios II Application and BSP from Template
     2. Selecione o botão [...] para carregar o .sopcinfo, certifique-se de estar no diretório **qsys** desse projeto (o Nios pode abrir um .sopcinfo antigo por padrão) o caminho deve ser algo como **DE2_ETHERNET\src\qsys**, selecione o arquivo system.sopcinfo
     3. Dê um nome ao projeto. Diferente de 'base', pois o diretório já existe, ou então renomeie o diretório existente.
     4. Por padrão o Nios irá criar o projeto (e o BSP) no diretório **qsys\software**, para mudar isso desmarque a opção 'Use default location' e apague o 'qsys' do caminho em 'Project Location', isso irá colocar o projeto no diretório 'software' (o mesmo usado como Workspace do Eclipse). O caminho resultante deve ser algo como: **DE2_ETHERNET\src\software\\<nome_projeto>**
     5. Como Template selecione Simple Socket Server (a primeira opção, não a com RGMII)
     6. Dê um Finish
-13. O template do Nios foi desenvolvido para hardware mais recente usando periféricos que a DE2 não possui, algumas modificações são necessárias no projeto da aplicação (o BSP funciona normalmente). Existem duas opções:
+12. O template do Nios foi desenvolvido para hardware mais recente usando periféricos que a DE2 não possui, algumas modificações são necessárias no projeto da aplicação (o BSP funciona normalmente). Existem duas opções:
     1. Apagar todos os arquivo .c e .h do projeto (o BSP deve continuar intacto) e copiar todo o conteúdo do diretório **\src\software\base** para o diretório do projeto **\src\software\\<nome_projeto>**, em seguida, no Nios, dar um Refresh no projeto (botão direito->Refresh ou F5)
     2. Seguir os passos abaixo para converter manualmente, recomendável apenas caso queira entender melhor algumas partes do projeto.
 
-A seguir estão os passos para converter manualmente, se você escolheu a primeira opção e já copiou o diretório vá para o passo 14.
+A seguir estão os passos para converter manualmente, se você escolheu a primeira opção e já copiou o diretório vá para o passo 13.
 1. Delete o arquivo tse_my_system (ele está relacionado ao Triple Speed Ethernet comentado, aqui estamos usando o DM9000A no lugar)
 2. Delete o arquivo led.c (ele tem funcionalidades para manipular leds/7segmentos da placa no exemplo original, que não foram utilizados nessa versão simplificada)
 3. O Template espera que a flash esteja nomeada como ext_flash no Qsys, mas foi nomeada cfi_flash (da sigla para Common Flash Memory Interface), por isso será necessário renomear os defines utilizados. A memória Flash é utilizada (nesse caso) para obter o endereço MAC da placa, armazenado no último setor da memória, se quiser diminuir ainda mais o código e deixar específico para uma placa é possível remover a Flash, alterar a função `get_board_mac_addr()` em network_utilities.c para o endereço MAC da sua placa específica e assim pode apagar todo o resto do conteúdo do arquivo network_utilities.c
@@ -67,14 +62,20 @@ A seguir estão os passos para converter manualmente, se você escolheu a primei
 DM9000A_INSTANCE( DM9000A_0, dm9000a_0 );
 DM9000A_INIT( DM9000A_0, dm9000a_0 );
 ```
- é preciso incluir o arquivo "DM9000A/dm9000a.h" também
+ é preciso incluir o header também. Após o `#include "includes.h"` adicione a linha `#include "DM9000A/dm9000a.h"`
 
-14. Agora compile o BSP e o projeto, nessa ordem. Pode dar build indiviualmente ou no menu Project->Build All (ou Ctrl+B).
-Por fim para rodar clique com botão direito no projeto, vá em Run As-> Nios II Hardware. Se aparecer a mensagem "NicheStack is running" o projeto base está funcionando como esperado. Caso não funcione, vá para a seção abaixo.
+13. Agora compile o BSP e o projeto, nessa ordem. Pode dar build indiviualmente ou no menu Project->Build All (ou Ctrl+B).
+14. Carregue o .sof na placa
+    1. Certifique-se que a placa está conectada ao PC e ligada e que o cabo ethernet está conectada nela
+    2. Abra o Programador (Tools->Programmer)
+    3. Uma mensagem do OpenCore Plus irá aparecer (existem funcionalidades sendo utilizadas que são limitadas por tempo ou para avaliação) apenas dê OK
+    4. O arquivo de2_net_time_limited.sof deve carregar automaticamente, caso não use o Add File... para adicionar, selecione o botão Start para carregar o programa. Caso o progresso não fique em '100%(Successful)' verifique se a placa está devidamente conectada ao PC.
+    5. Deixe as janelas do programador e do OpenCore Plus abertas
+Por fim para rodar clique com botão direito no projeto, vá em Run As-> Nios II Hardware. Se aparecer a mensagem "NicheStack is running" no Console do Nios o projeto base está funcionando como esperado. Caso não funcione, vá para a seção abaixo.
 15. Se deixar o programa rodando sem um servidor ele irá eventualmente falhar e uma série de mensgens de erro serão apresentadas, para o teste completo será necessário usar Python para rodar um servidor TCP simples.
 
 # Possíveis problemas
-1. Se o Nios II Console parar em **IP address of et1 : 0.0.0.0** é possível que houve um problema com a interface, os LEDs do conector da placa não devem estar acessos, confirmando que não está funcionando.
+1. Se o Nios II Console parar em **IP address of et1 : 0.0.0.0** é possível que houve um problema com a interface, os LEDs do conector da placa não devem estar acessos, confirmando que não está funcionando. Esse problema também ocorre quando o arquivo .sof é carregado na placa antes de abrir o NIOS.
     1. Pare o programa (botão vermelho na direita do Nios II Console)
     2. Volte para a janela do OpenCore Plus e aperte Cancel
     3. Desligue a placa e ligue novamente

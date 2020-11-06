@@ -25,7 +25,7 @@
 
 /* MicroC/OS-II definitions */
 #include "includes.h"
-#include "DM900A/dm9000a.h"
+#include "DM9000A/dm9000a.h"
 /* Simple Socket Server definitions */
 #include "simple_socket_server.h"                                                                    
 #include "alt_error_handler.h"
