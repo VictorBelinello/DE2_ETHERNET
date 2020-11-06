@@ -25,7 +25,7 @@
 
 /* MicroC/OS-II definitions */
 #include "includes.h"
-#include "dm9000a.h"
+#include "DM900A/dm9000a.h"
 /* Simple Socket Server definitions */
 #include "simple_socket_server.h"                                                                    
 #include "alt_error_handler.h"
@@ -74,12 +74,10 @@ void SSSInitialTask(void *task_data)
    */   
   alt_iniche_init();
   netmain(); 
-  printf("Iniciando espera\n");
   /* Wait for the network stack to be ready before proceeding. 
    * iniche_net_ready indicates that TCP/IP stack is ready, and IP address is obtained.
    */
   while (!iniche_net_ready)
-	printf("Wait\n");
     TK_SLEEP(1);
 
   /* Now that the stack is running, perform the application initialization steps */

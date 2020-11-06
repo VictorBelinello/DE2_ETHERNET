@@ -66,21 +66,11 @@
 /*
  * Task Prototypes:
  * 
- *    LEDManagementTask() - Manages the LEDs on the Nios Development Board, 
- * driven by commands received via a MicroC/OS-II queue, SSSLEDCommmandQ.
- * 
- *    SSSSimpleSocketServerTask() - Manages the socket server connection and 
+ *    MainTask() - Manages the socket connection and 
  * calls relevant subroutines to manage the socket connection.
- * 
- *    LED7SegLightshowTask() blinks the 7-segment LEDs with a random pattern. 
- * The pattern stops and starts in response to LEDManagementTask's posting and 
- * pending to the MicroC/OS-II semaphore named SSSLEDLightshowSem.
- * 
- *    SSSInitialTask() instantiates all of the MicroC/OS-II resources.
- * 
  */
 
-void SSSSimpleSocketServerTask();
+void MainTask();
 
 
 /*
