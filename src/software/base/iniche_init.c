@@ -25,7 +25,6 @@
 
 /* MicroC/OS-II definitions */
 #include "includes.h"
-#include "system.h"
 #include "dm9000a.h"
 /* Simple Socket Server definitions */
 #include "simple_socket_server.h"                                                                    
