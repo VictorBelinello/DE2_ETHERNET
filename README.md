@@ -10,7 +10,7 @@ Alguns arquivos utilizados no desenvolvimento do projeto foram inclusos para ref
 3. Carregar o arquivo .qsys. 
     1. Acesse o menu File->Open
     2. Dentro do diretório **qsys** encontrará o arquivo system.qsys, selecione ele.
-4. Se tiver componentes extras agora deve adicionar eles (recomendável testar o projeto como está antes de adicionar componentes customizados), na seção 'Componentes' existem informações úteis para isso.
+4. Se tiver componentes extras agora deve adicionar eles (recomendável testar o projeto como está antes de adicionar componentes customizados). O recomendado é criar um diretório para o componente dentro **hardware** com o hdl relacionado.
 5. Na aba Generation na parte de 'Synthesis' selecione VHDL para síntese e clique em Generate.
 6. Feche o Qsys
 7. No Quartus, adicione o .qip gerado pelo Qsys. 
@@ -120,3 +120,4 @@ Por fim para rodar clique com botão direito no projeto, vá em Run As-> Nios II
     5. De um clean (botão direito->Clean Project) no BSP e de um Build
     6. Faça o mesmo (Clean + Build) com a aplicação 
 4. É importante ressaltar que no caso do DHCP caso você tenha modificado manualmente os arquivos, na função `SSSSimpleSocketServerTask()` se deixar o código original gera o problema com o cliente DHCP, alterar o conteúdo como sugerido resolve, no entanto não foi identificado o que causa esse comportamento.
+5. Em algumas situações o Nios indica erros que não ocorriam antes, mesmo sem modificar o código, em geral ele compila normalmente (mesmo indicando o contrário) e o programa pode ser carregado normalmente

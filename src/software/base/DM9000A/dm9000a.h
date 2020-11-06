@@ -3,8 +3,8 @@
 
 #include "alt_iniche_dev.h"
 
-#define DM9000A_0_BASE 0x1802030
-#define DM9000A_0_IRQ 3
+#define DM9000A_0_BASE DM9000A_BASE
+#define DM9000A_0_IRQ DM9000A_IRQ
 #define DM9000A_NAME "/dev/DM9000A"
 #define DM9000A_0_NAME DM9000A_NAME
 
