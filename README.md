@@ -72,16 +72,40 @@ DM9000A_INIT( DM9000A_0, dm9000a_0 );
     4. O arquivo de2_net_time_limited.sof deve carregar automaticamente, caso não use o Add File... para adicionar, selecione o botão Start para carregar o programa. Caso o progresso não fique em '100%(Successful)' verifique se a placa está devidamente conectada ao PC.
     5. Deixe as janelas do programador e do OpenCore Plus abertas
 Por fim para rodar clique com botão direito no projeto, vá em Run As-> Nios II Hardware. Se aparecer a mensagem "NicheStack is running" no Console do Nios o projeto base está funcionando como esperado. Caso não funcione, vá para a seção abaixo.
-15. Se deixar o programa rodando sem um servidor ele irá eventualmente falhar e uma série de mensgens de erro serão apresentadas, para o teste completo será necessário usar Python para rodar um servidor TCP simples.
+15. Se deixar o programa rodando sem um servidor ele irá eventualmente falhar e uma série de mensagens de erro serão apresentadas, para o teste completo é possível usar Python para rodar um servidor TCP simples.
+    1. É necessário ter Python3 instalado 
+    2. Abra um terminal (Prompt, PowerShell ou outro similar) e vá para o diretório **DE2_ETHERNET\example**
+    3. Verifique o IP e porta do servidor.
+        1. A porta provavelmente não será mudar 
+        2. Para o IP abra o Prompt de comando ou Powershell e digite o comando `ipconfig` procure na interface que esta utilizando o Ipv4 Address
+        3. No arquivo tcpserver.py modifique as linhas abaixo com os valores corretos:
+        ```python
+        TCP_IP = '192.168.0.2'
+        TCP_PORT = 5000
+        ```
+    4. Rode o arquivo tcpserver.py com o comando python tcpserver.py (use python3 se não funcionar, instalações recentes devem ter o binding automático)
+        1. Esse arquivo irá iniciar um servidor TCP na porta e IP especificados e quando conectar com o cliente irá enviar, indefinidamente, números aleatórios representando a leitura de um sensor.
+        2. A chamada `sensor.encode()` converte a string *sensor* em bytes, necessário já que `socket.send()` recebe bytes como argumento.
+    5. Modifique o IP e porta também no arquivo simple_socket_server.c
+    ```c
+    addr.sin_port = htons(5000); 						// ALTERAR PORTA
+    addr.sin_addr.s_addr = inet_addr("192.168.0.2"); 	// ALTERAR IP
+    ```
+    6. Carregue novamente o .elf na placa indo em Run As->Nios II Hardware
+    7. No console do Nios deve aparecer um séries de mensagens do tipo **Mensagem recebida: <numero_aleatorio>** e no terminal rodando o servidor **Enviando valor: <numero_aleatorio>**
+16. No mesmo diretório **DE2_ETHERNET\example** existe também um cliente tcp implementado em Python, pode ser utilizado caso o servidor esteja implementado na placa
 
 # Possíveis problemas
-1. Se o Nios II Console parar em **IP address of et1 : 0.0.0.0** é possível que houve um problema com a interface, os LEDs do conector da placa não devem estar acessos, confirmando que não está funcionando. Esse problema também ocorre quando o arquivo .sof é carregado na placa antes de abrir o NIOS.
+1. Se tiver algum problema rodando o programa (após dar Run as -> Nios II Hardware) relacionado ao ID do system
+    1. Vá para Run Configurations
+    2. Na aba Target Connect na seção System ID checks marque as duas opções 
+2. Se o Nios II Console parar em **IP address of et1 : 0.0.0.0** é possível que houve um problema com a interface, os LEDs do conector da placa não devem estar acessos, confirmando que não está funcionando. Esse problema também ocorre quando o arquivo .sof é carregado na placa antes de abrir o NIOS.
     1. Pare o programa (botão vermelho na direita do Nios II Console)
     2. Volte para a janela do OpenCore Plus e aperte Cancel
     3. Desligue a placa e ligue novamente
     4. Carregue o programa novamente, apertando o Start
     5. Tente rodar novamente o programa no Nios (Run As -> Nios II Hardware)
-2. Caso tenha algum problema com o DHCP é possível tentar usar um IP estático, mas como informado não consegui fazer o programa funcionar dessa forma, pode ser um problema local ou o código não acomada essa alteração. No entanto após as últimas alterações de código não houve problema com o DHCP:
+3. Caso tenha algum problema com o DHCP é possível tentar usar um IP estático, mas como informado não consegui fazer o programa funcionar dessa forma, pode ser um problema local ou o código não acomada essa alteração. No entanto após as últimas alterações de código não houve problema com o DHCP:
     1. No arquivo simple_socket_server.h preencha as diretivas #define IPADDR0, IPADDR1 ... GWADDDR3 de acordo com sua rede, provavelmente será algo semelhante ao exemplo no comentário logo acima. Para verificar abra o Prompt de comando ou Powershell e digite o comando `ipconfig` procure na interface que esta utilizando o campo Default Gateway deve ser algo parecido com 192.168.0.1 ou 192.168.1.1 use isso nos `#define GWADDR0-3` separando cada octeto em um define, por exemplo:
     ```c
     #define GWADDR0   192
@@ -95,4 +119,4 @@ Por fim para rodar clique com botão direito no projeto, vá em Run As-> Nios II
     4. Clique en Exit, confirme para salvar. (Não gere o BSP ainda)
     5. De um clean (botão direito->Clean Project) no BSP e de um Build
     6. Faça o mesmo (Clean + Build) com a aplicação 
-3. É importante ressaltar que no caso do DHCP caso você tenha modificado manualmente os arquivos, na função `SSSSimpleSocketServerTask()` se deixar o código original gera o problema com o cliente DHCP, alterar o conteúdo como sugerido resolve, no entanto não foi identificado o que causa esse comportamento.
+4. É importante ressaltar que no caso do DHCP caso você tenha modificado manualmente os arquivos, na função `SSSSimpleSocketServerTask()` se deixar o código original gera o problema com o cliente DHCP, alterar o conteúdo como sugerido resolve, no entanto não foi identificado o que causa esse comportamento.
