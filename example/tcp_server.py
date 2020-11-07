@@ -14,7 +14,7 @@ def accept(sock):
         continue
     return conn, addr
 
-TCP_IP = '192.168.0.2'
+TCP_IP = ''
 TCP_PORT = 5000
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)

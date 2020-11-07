@@ -42,6 +42,7 @@
 void MainTask()
 {
   int fd_socket;
+  char ip[12];
   struct sockaddr_in addr;
   
   /*
@@ -61,8 +62,11 @@ void MainTask()
    */
 
   addr.sin_family = AF_INET;
-  addr.sin_port = htons(5000); 						// ALTERAR PORTA
-  addr.sin_addr.s_addr = inet_addr("192.168.0.2"); 	// ALTERAR IP
+  addr.sin_port = htons(5000); 						// ALTERAR PORTA SE NECESSÁRIO
+  printf("Informe o IP (no formato 192.168.0.2):\n"); // Pega o IP do usuário através da stdin (nios2 console)
+  scanf("%s", ip);
+  printf("IP %s obtido\n", ip);
+  addr.sin_addr.s_addr = inet_addr(ip);
   // Caso seja um servidor mude para linha abaixo para ouvir em todas as interfaces locais
   // addr.sin_addr.s_addr = INADDR_ANY
 
