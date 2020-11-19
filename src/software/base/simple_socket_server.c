@@ -42,7 +42,7 @@
 void MainTask()
 {
   int fd_socket;
-  char ip[12];
+  char ip[16];
   struct sockaddr_in addr;
   
   /*
